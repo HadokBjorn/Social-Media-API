@@ -1,5 +1,5 @@
 {
-	"name": "shortly",
+	"name": "social-media-api",
 	"type": "module",
 	"version": "1.0.0",
 	"description": "Template to initiate projects Node back-end with express",
