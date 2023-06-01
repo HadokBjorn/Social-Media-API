@@ -284,12 +284,15 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 -- Data for Name: sessions; Type: TABLE DATA; Schema: public; Owner: -
 --
 
+INSERT INTO public.sessions VALUES (3, 2, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjg1NjA2OTAzLCJleHAiOjE2ODU2MTA1MDN9.Fl5M_YPbMA5hU6Kr732s2mz3v9d-MHT6o6dRomyIzME', '2023-06-01 03:08:23.526467');
 
 
 --
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: -
 --
 
+INSERT INTO public.users VALUES (1, 'Esaú_Bandeira', 'https://avatars.githubusercontent.com/u/113884763?v=4', 'esau@dev.com', '$2b$10$QbM/.ZJmKMDWBSJBR4BLJuOEvdRKwftnPyVUQgQL15DJaMJYE6J2W', '2023-06-01 00:50:40.641984');
+INSERT INTO public.users VALUES (2, 'PinkGuy', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.etsy.com%2Fca%2Flisting%2F868489599%2Ffall-pink-guy-figure&psig=AOvVaw0Guj9TuNvyi5SYV94aaRzI&ust=1685685388897000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCKDmrdGxof8CFQAAAAAdAAAAABAD', 'pink@pink.com', '$2b$10$Omk7OZyZ6G8hZvpqszLji.ujPVrgjRxuFErdHwpFapk8aAJjgiJzm', '2023-06-01 00:58:36.46955');
 
 
 --
@@ -324,14 +327,14 @@ SELECT pg_catalog.setval('public.posts_id_seq', 1, false);
 -- Name: sessions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.sessions_id_seq', 1, false);
+SELECT pg_catalog.setval('public.sessions_id_seq', 3, true);
 
 
 --
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 1, false);
+SELECT pg_catalog.setval('public.users_id_seq', 2, true);
 
 
 --
