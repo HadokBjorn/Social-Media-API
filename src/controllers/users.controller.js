@@ -1,5 +1,10 @@
 import bcrypt from "bcrypt";
-import { createSessionDB, createUserDB } from "../repositories/users.repository.js";
+import {
+	createSessionDB,
+	createUserDB,
+	deletePostDB,
+	updatePostDB,
+} from "../repositories/users.repository.js";
 
 export async function signup(req, res) {
 	const { username, image, email, password } = req.body;
@@ -17,6 +22,29 @@ export async function login(req, res) {
 	try {
 		await createSessionDB({ id, token });
 		res.status(200).send({ token: token });
+	} catch (err) {
+		res.status(500).send(err.message);
+	}
+}
+export async function updatePost(req, res) {
+	const { id } = req.params;
+	const { link, description } = req.body;
+	const userId = res.locals.user.id;
+	console.log(userId);
+	try {
+		await updatePostDB({ link, description, id, userId });
+		res.sendStatus(200);
+	} catch (err) {
+		res.status(500).send(err.message);
+	}
+}
+export async function deletePost(req, res) {
+	const { id } = req.params;
+	const userId = res.locals.user.id;
+	console.log(userId);
+	try {
+		await deletePostDB({ id, userId });
+		res.sendStatus(200);
 	} catch (err) {
 		res.status(500).send(err.message);
 	}
