@@ -28,11 +28,11 @@ export async function login(req, res) {
 }
 export async function updatePost(req, res) {
 	const { id } = req.params;
-	const { link, description } = req.body;
+	const { description } = req.body;
 	const userId = res.locals.user.id;
 	console.log(userId);
 	try {
-		await updatePostDB({ link, description, id, userId });
+		await updatePostDB({ description, id, userId });
 		res.sendStatus(200);
 	} catch (err) {
 		res.status(500).send(err.message);
