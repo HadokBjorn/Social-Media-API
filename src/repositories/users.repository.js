@@ -24,13 +24,13 @@ export function userLoggedDB(id, token) {
 	return db.query(`SELECT * FROM sessions WHERE user_id=$1 AND token=$2`, [id, token]);
 }
 export function updatePostDB(body) {
-	const { link, description, id, userId } = body;
+	const { description, id, userId } = body;
 	return db.query(
 		`
-		UPDATE posts SET link=$1, description=$2
-		WHERE id=$3 AND user_id=$4;
+		UPDATE posts SET description=$1
+		WHERE id=$2 AND user_id=$3;
 	`,
-		[link, description, Number(id), Number(userId)]
+		[description, Number(id), Number(userId)]
 	);
 }
 export function deletePostDB(body) {
