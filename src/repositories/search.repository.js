@@ -7,3 +7,8 @@ export function getUsers() {
 export function getPosts(id) {
     return db.query(`SELECT * FROM posts WHERE user_id = $1 `, [id])
 }
+
+export function getUserById(id) {
+    return db.query(`SELECT * FROM users WHERE id= $1 `, [id]);
+
+}
