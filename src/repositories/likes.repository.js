@@ -7,6 +7,17 @@ export function likeDB(userId, postId) {
     ]);
 }
 
+export function unLikeDB(userId, postId) {
+    return db.query(`
+    DELETE FROM likes
+        WHERE post_id = $1
+        AND user_id = $2;
+    `, [
+        postId,
+        userId
+    ]);
+}
+
 export function getLikesDB(postId) {
     return db.query(`
     SELECT id AS post_id, 

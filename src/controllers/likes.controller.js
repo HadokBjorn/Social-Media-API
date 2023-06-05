@@ -1,4 +1,4 @@
-import { getLikesDB, likeDB } from "../repositories/likes.repository.js";
+import { getLikesDB, likeDB, unLikeDB } from "../repositories/likes.repository.js";
 
 export async function like(req, res) {
     const postId = req.params;
@@ -6,6 +6,15 @@ export async function like(req, res) {
 
     try {
         await likeDB(postId, userId);
+        res.sendStatus(201);
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
+}
+
+export async function unLike(req, res) {
+    try {
+        await unLikeDB(postId, userId);
         res.sendStatus(201);
     } catch (err) {
         res.status(500).send(err.message);
