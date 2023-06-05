@@ -7,5 +7,4 @@ const routers = Router();
 routers.use(usersRouter);
 routers.use(likesRouter);
 
-
 export default routers;
