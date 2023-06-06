@@ -1,7 +1,7 @@
 import { getLikesDB, likeDB, unLikeDB } from "../repositories/likes.repository.js";
 
 export async function like(req, res) {
-    const postId = req.params;
+    const postId = req.params.id;
     const userId = res.locals.user.id;
 
     try {
@@ -13,23 +13,26 @@ export async function like(req, res) {
 }
 
 export async function unLike(req, res) {
+    const postId = req.params.id;
+    const userId = res.locals.user.id;
+
     try {
-        await unLikeDB(postId, userId);
-        res.sendStatus(201);
+        const result = await unLikeDB(userId, postId);
+        res.sendStatus(204);
     } catch (err) {
         res.status(500).send(err.message);
     }
 }
 
 export async function getLikes(req, res) {
-    const postId = req.params;
+    const postId = req.params.id;
 
     try {
-        const result = await getLikesDB(postId, userId);
+        const result = await getLikesDB(postId);
         if (result.rowCount > 0) {
             const { post_id, num_likes } = result.rows[0];
 
-            res.send({
+            return res.send({
                 postId: post_id,
                 numLIkes: num_likes,
                 lastLiker: result.rows.map(liker => liker.last_liker)
