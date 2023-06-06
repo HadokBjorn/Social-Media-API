@@ -3,7 +3,7 @@ import { getUserSearch, getUserPosts } from "../controllers/search.controllers.j
 
 const searchRouter = Router();
 
-searchRouter.get("/search", getUserSearch);
+searchRouter.post("/search", getUserSearch);
 searchRouter.get("/user/:id", getUserPosts);
 
 export default searchRouter;
