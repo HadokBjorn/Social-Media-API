@@ -14,7 +14,7 @@ export async function validateLogin(req, res, next) {
 		if (!correctPassword) return res.sendStatus(401);
 		const { id, name } = user.rows[0];
 		const oneHour = 3600; //one hour in seconds
-		const token = jwt.sign({ id, name }, process.env.JWT_SECRET, { expiresIn: oneHour });
+		const token = jwt.sign({ id, name }, process.env.SECRET_KEY, { expiresIn: oneHour });
 		await deleteExpiredSessionDB(id, token);
 
 		res.locals.infos = { id, token };
