@@ -1,9 +1,10 @@
 import bcrypt from "bcrypt";
 import { getUsers, getPosts, getUserById } from "../repositories/search.repository.js";
 
-export async function getUserSearch(req, res) {
+export async function UserSearch(req, res) {
     const { search } = req.body
     let compatibleUsers = [];
+
     try {
         const users = await getUsers()
         const availableUsers = users.rows
