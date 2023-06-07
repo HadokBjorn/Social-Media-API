@@ -9,9 +9,9 @@ export async function UserSearch(req, res) {
         const users = await getUsers()
         const availableUsers = users.rows
         for (let i = 0; i < availableUsers.length; i++) {
-            let item = availableUsers[i];
+            let item = availableUsers[i].username;
             if (item.includes(search)) {
-                compatibleUsers.push(item)
+                compatibleUsers.push(availableUsers[i])
             }
         }
         return res.send(compatibleUsers)
