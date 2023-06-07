@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 12.15 (Ubuntu 12.15-0ubuntu0.20.04.1)
--- Dumped by pg_dump version 12.15 (Ubuntu 12.15-0ubuntu0.20.04.1)
+-- Dumped from database version 12.15 (Ubuntu 12.15-1.pgdg20.04+1)
+-- Dumped by pg_dump version 12.15 (Ubuntu 12.15-1.pgdg20.04+1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -123,7 +123,7 @@ CREATE TABLE public.posts (
     id integer NOT NULL,
     user_id integer,
     link text NOT NULL,
-    description text NOT NULL,
+    description text DEFAULT 'Deem uma olhada nesse link!'::text NOT NULL,
     created_at timestamp without time zone DEFAULT now() NOT NULL
 );
 
@@ -278,13 +278,17 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 -- Data for Name: posts; Type: TABLE DATA; Schema: public; Owner: -
 --
 
+INSERT INTO public.posts VALUES (1, 1, 'https://google.com', 'site do goole', '2023-06-06 20:12:15.11063');
+INSERT INTO public.posts VALUES (2, 1, 'https://facebook.com', 'site do facebook', '2023-06-06 20:12:39.210867');
+INSERT INTO public.posts VALUES (3, 1, 'https://github.com/HadokBjorn', 'Fala galera, aqui está meu repositorio.', '2023-06-06 21:07:08.273554');
+INSERT INTO public.posts VALUES (4, 1, 'https://github.com/HadokBjorn/Social-Media-API', 'minha api ai galera', '2023-06-06 21:24:49.566364');
+INSERT INTO public.posts VALUES (5, 1, 'https://twitter.com', 'Deem uma olhada nesse link!', '2023-06-06 21:32:51.752336');
 
 
 --
 -- Data for Name: sessions; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.sessions VALUES (3, 2, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjg1NjA2OTAzLCJleHAiOjE2ODU2MTA1MDN9.Fl5M_YPbMA5hU6Kr732s2mz3v9d-MHT6o6dRomyIzME', '2023-06-01 03:08:23.526467');
 
 
 --
@@ -293,6 +297,8 @@ INSERT INTO public.sessions VALUES (3, 2, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
 
 INSERT INTO public.users VALUES (1, 'Esaú_Bandeira', 'https://avatars.githubusercontent.com/u/113884763?v=4', 'esau@dev.com', '$2b$10$QbM/.ZJmKMDWBSJBR4BLJuOEvdRKwftnPyVUQgQL15DJaMJYE6J2W', '2023-06-01 00:50:40.641984');
 INSERT INTO public.users VALUES (2, 'PinkGuy', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.etsy.com%2Fca%2Flisting%2F868489599%2Ffall-pink-guy-figure&psig=AOvVaw0Guj9TuNvyi5SYV94aaRzI&ust=1685685388897000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCKDmrdGxof8CFQAAAAAdAAAAABAD', 'pink@pink.com', '$2b$10$Omk7OZyZ6G8hZvpqszLji.ujPVrgjRxuFErdHwpFapk8aAJjgiJzm', '2023-06-01 00:58:36.46955');
+INSERT INTO public.users VALUES (3, 'Guy Sensei', 'https://pm1.narvii.com/6739/1cd56eac968ade7202ec956e14262c92eff59ff5v2_00.jpg', 'guy@guy.com', '$2b$10$hajIxIrbcNWpqtI.GxpC.OYhWnKL5NXZF17oyz6QjQmBVGub05nIW', '2023-06-02 20:00:56.508245');
+INSERT INTO public.users VALUES (4, 'Naruto', 'https://img.quizur.com/f/img6153a7159867d1.53569316.jpg?lastEdited=1632872216', 'naruto@naruto.com', '$2b$10$Tj9Mr8MUcdRN8/i5Gclm5.A5cCHWVBxqWUxN9Aj8weFBeB2HBzQQu', '2023-06-02 20:03:00.85244');
 
 
 --
@@ -320,21 +326,21 @@ SELECT pg_catalog.setval('public.likes_id_seq', 1, false);
 -- Name: posts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.posts_id_seq', 1, false);
+SELECT pg_catalog.setval('public.posts_id_seq', 5, true);
 
 
 --
 -- Name: sessions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.sessions_id_seq', 3, true);
+SELECT pg_catalog.setval('public.sessions_id_seq', 1, false);
 
 
 --
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 2, true);
+SELECT pg_catalog.setval('public.users_id_seq', 4, true);
 
 
 --
