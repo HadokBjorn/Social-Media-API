@@ -21,7 +21,7 @@ export async function login(req, res) {
 	const { id, token, username, image } = res.locals.infos;
 	try {
 		await createSessionDB({ id, token });
-		res.status(200).send({ token, username, image });
+		res.status(200).send({ id, token, username, image });
 	} catch (err) {
 		res.status(500).send(err.message);
 	}
