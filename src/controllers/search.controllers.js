@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import { getUsers, getPosts, getUserById } from "../repositories/search.repository.js";
+import { getUsers, getPosts, getUserById , insertFollow, deleteFollow, searchFollow} from "../repositories/search.repository.js";
 
 export async function UserSearch(req, res) {
     const { search } = req.body
@@ -33,4 +33,44 @@ export async function getUserPosts(req, res) {
         res.status(500).send(err.message);
     }
 
+}
+
+export async function Follow(req,res){
+    const {user_id, follower_id} = req.body
+    try{
+        await insertFollow(user_id, follower_id)
+        const follow= await searchFollow(user_id,follower_id)
+        let idt= follow.rows[0].id
+        return res.status(200).send(idt)
+
+    } catch(err){
+        res.status(500).send(err.message);
+    }
+}
+
+export async function Unfollow(req,res){
+    const {id}= req.body
+    try{
+        const result= await deleteFollow(id)
+        return res.sendStatus(200)
+
+    } catch(err){
+        res.status(500).send(err.message);
+    }
+}
+
+export async function isFollowed(req,res){
+    const {user_id, follower_id} = req.body;
+    try{
+        const follow= await searchFollow(user_id,follower_id)
+        let idt= follow.rows[0].id
+        if(idt){
+            return res.status(200).send(true)
+        }
+        else{
+            return res.status(200).send(false)
+        }
+    } catch(err){
+        res.status(500).send(err.message);
+    }
 }

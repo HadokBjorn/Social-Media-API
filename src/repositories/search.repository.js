@@ -12,3 +12,15 @@ export function getUserById(id) {
     return db.query(`SELECT * FROM users WHERE id= $1 `, [id]);
 
 }
+
+export function insertFollow(user_id, follower_id){
+    return db.query(`INSERT INTO followers (user_id, follower_id) VALUES ($1, $2)`,[user_id, follower_id])
+}
+
+export function deleteFollow(id){
+    return db.query(`DELETE FROM followers WHERE id=$1 `,[id])
+}
+
+export function searchFollow(user_id, follower_id){
+    return db.query(`SELECT * FROM followers WHERE user_id=$1 AND follower_id=$2`, [user_id,follower_id])
+}
