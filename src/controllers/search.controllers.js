@@ -28,6 +28,7 @@ export async function getUserPosts(req, res) {
         const result2 = await getUserById(id)
         const posts = result1.rows
         posts.push(result2.rows[0])
+        return res.status(200).send(posts)
 
     } catch (err) {
         res.status(500).send(err.message);
