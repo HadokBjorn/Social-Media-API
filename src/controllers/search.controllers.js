@@ -22,7 +22,7 @@ export async function UserSearch(req, res) {
 }
 
 export async function getUserPosts(req, res) {
-    const id = parseInt(req.params);
+    const id = parseInt(req.params.id);
     try {
         const result1 = await getPosts(id)
         const result2 = await getUserById(id)
