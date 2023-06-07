@@ -18,10 +18,10 @@ export async function signup(req, res) {
 	}
 }
 export async function login(req, res) {
-	const { id, token } = res.locals.infos;
+	const { id, token, username, image } = res.locals.infos;
 	try {
 		await createSessionDB({ id, token });
-		res.status(200).send({ token: token });
+		res.status(200).send({ token, username, image });
 	} catch (err) {
 		res.status(500).send(err.message);
 	}
@@ -30,7 +30,6 @@ export async function updatePost(req, res) {
 	const { id } = req.params;
 	const { description } = req.body;
 	const userId = res.locals.user.id;
-	console.log(userId);
 	try {
 		await updatePostDB({ description, id, userId });
 		res.sendStatus(200);
@@ -41,7 +40,6 @@ export async function updatePost(req, res) {
 export async function deletePost(req, res) {
 	const { id } = req.params;
 	const userId = res.locals.user.id;
-	console.log(userId);
 	try {
 		await deletePostDB({ id, userId });
 		res.sendStatus(200);
