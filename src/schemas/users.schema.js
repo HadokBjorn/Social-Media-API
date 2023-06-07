@@ -17,3 +17,7 @@ export const loginSchema = joi.object({
 		.required(),
 	password: joi.string().min(6).required(),
 });
+
+export const descriptionUpdateSchema = joi.object({
+	description: joi.string().min(1).required()
+})
