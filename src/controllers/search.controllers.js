@@ -1,20 +1,49 @@
 import bcrypt from "bcrypt";
-import { getUsers, getPosts, getUserById , insertFollow, deleteFollow, searchFollow} from "../repositories/search.repository.js";
+import { getUsers, getPosts, getUserById , insertFollow, deleteFollow, searchFollow, searchFollowBarVersion} from "../repositories/search.repository.js";
 
 export async function UserSearch(req, res) {
-    const { search } = req.body
+    const { search ,id} = req.body
     let compatibleUsers = [];
+    let orderedUsers=[];
+    let followedIds=[];
 
     try {
         const users = await getUsers()
+        const followedUsers= await searchFollowBarVersion(id)
         const availableUsers = users.rows
+
+        for(let i=0;i < followedUsers.rows.length;i++){
+            followedIds.push(followedUsers.rows[i].user_id)
+        }
+
+
         for (let i = 0; i < availableUsers.length; i++) {
             let item = availableUsers[i].username;
             if (item.includes(search)) {
                 compatibleUsers.push(availableUsers[i])
             }
         }
-        return res.send(compatibleUsers)
+
+        for (let i=0; i < compatibleUsers.length; i++){
+            let userId = compatibleUsers[i].id;
+            for(let j=0; j < followedIds; j++){
+                if(userId === followedIds[j]){
+                    orderedUsers.push(compatibleUsers[i])
+                }
+            }
+        }
+
+        for (let i=0; i < compatibleUsers.length; i++){
+            let userId = compatibleUsers[i].id;
+            for(let j=0; j < followedIds; j++){
+                if(userId !== followedIds[j]){
+                    orderedUsers.push(compatibleUsers[i])
+                }
+            }
+        }
+
+
+        return res.send(orderedUsers, followedIds)
     } catch (err) {
         res.status(500).send(err.message);
     }
