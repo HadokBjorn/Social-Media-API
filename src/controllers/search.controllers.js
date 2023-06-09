@@ -43,10 +43,10 @@ export async function UserSearch(req, res) {
             }
         }
 
-        orderedUsers.push(followedIds)
+        compatibleUsers.push(followedIds)
 
 
-        return res.send(orderedUsers)
+        return res.send(compatibleUsers)
     } catch (err) {
         res.status(500).send(err.message);
     }
