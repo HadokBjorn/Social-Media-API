@@ -32,7 +32,7 @@ export async function UserSearch(req, res) {
                     orderedUsers.push(compatibleUsers[i])
                 }
             }
-            res.send(orderedUsers)
+            res.send(compatibleUsers)
         }
 
         for (let i=0; i < compatibleUsers.length; i++){
