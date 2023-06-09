@@ -5,7 +5,7 @@ export async function UserSearch(req, res) {
     const {search} = req.body
     const id= parseInt(req.body.id)
     let compatibleUsers = [];
-    let orderedU=[];
+    let orderedU=[0];
     let followedIds=[];
 
     try {
