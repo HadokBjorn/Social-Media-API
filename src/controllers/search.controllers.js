@@ -65,14 +65,14 @@ export async function isFollowed(req,res){
     const {user_id, follower_id} = req.body;
     try{
         const follow= await searchFollow(user_id,follower_id)
-        let idt= follow.rows[0].id
+        let idt= follow.rows[0].id.toString()
         if(idt){
-            return res.status(200).send(true)
+            return res.status(200).send(idt) 
         }
         else{
-            return res.status(200).send(false)
+            return res.status(200).send(0)
         }
     } catch(err){
-        res.status(500).send(err.message);
+        res.sendStatus(500);
     }
 }
