@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import { getUsers, getPosts, getUserById , insertFollow, deleteFollow, searchFollow} from "../repositories/search.repository.js";
+import { getUsers, getPosts, getUserById , insertFollow, deleteFollow, searchFollow, searchFollowBarVersion} from "../repositories/search.repository.js";
 
 export async function UserSearch(req, res) {
     const { search ,id} = req.body
