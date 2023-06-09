@@ -44,7 +44,7 @@ export async function UserSearch(req, res) {
         }
 
 
-        return res.send(orderedUsers, followedIds)
+        return res.send(orderedUsers)
     } catch (err) {
         res.status(500).send(err.message);
     }
