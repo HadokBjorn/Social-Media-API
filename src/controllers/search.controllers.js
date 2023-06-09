@@ -53,7 +53,7 @@ export async function Follow(req,res){
 export async function Unfollow(req,res){
     const {id}= req.body
     try{
-        const result= await deleteFollow(id)
+        await deleteFollow(id)
         return res.sendStatus(200)
 
     } catch(err){
