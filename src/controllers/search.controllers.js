@@ -28,11 +28,11 @@ export async function UserSearch(req, res) {
         for (let i=0; i < compatibleUsers.length; i++){
             let userId = compatibleUsers[i].id;
             for(let j=0; j < followedIds; j++){
-                if(userId === followedIds[j]){
-                    orderedUsers.push(compatibleUsers[i])
+                if(userId == followedIds[j]){
+                    orderedUsers.push(compatibleUsers[i]);
                 }
             }
-            res.send(compatibleUsers[i])
+            res.send(orderedUsers)
         }
 
         for (let i=0; i < compatibleUsers.length; i++){
