@@ -29,10 +29,10 @@ export async function UserSearch(req, res) {
             let userId = compatibleUsers[i].id;
             for(let j=0; j < followedIds; j++){
                 if( userId === followedIds[j]){
-                    orderedU.push(2);
+                    res.send("oi")
                 }
             }
-            res.send(orderedU)
+            res.send("ola")
         }
 
         for (let i=0; i < compatibleUsers.length; i++){
