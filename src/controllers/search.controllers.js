@@ -25,14 +25,13 @@ export async function UserSearch(req, res) {
             }
         }
 
-        for (let i=0; i < followedIds.length; i++){
-            let item= followedIds[i]
-            for(let j=0; j < compatibleUsers; j++){
-                if( item === compatibleUsers[j].id){
-                    res.send("oi")
+        for (let i=0; i < compatibleUsers.length; i++){
+            let userId = compatibleUsers[i].id;
+            for(let j=0; j < followedIds; j++){
+                if(userId === followedIds[j]){
+                    orderedU.push(compatibleUsers[i])
                 }
             }
-            res.send("ola")
         }
 
         for (let i=0; i < compatibleUsers.length; i++){
