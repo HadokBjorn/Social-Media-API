@@ -2,7 +2,7 @@ import bcrypt from "bcrypt";
 import { getUsers, getPosts, getUserById , insertFollow, deleteFollow, searchFollow, searchFollowBarVersion} from "../repositories/search.repository.js";
 
 export async function UserSearch(req, res) {
-    const { search ,id} = req.body
+    const {id,search} = req.body
     let compatibleUsers = [];
     let orderedUsers=[];
     let followedIds=[];
