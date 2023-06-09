@@ -26,9 +26,10 @@ export async function UserSearch(req, res) {
         }
 
         for (let i=0; i < compatibleUsers.length; i++){
-            let userId = Number(compatibleUsers[i].id.toString());
+            let userId = compatibleUsers[i].id.toString();
             for(let j=0; j < followedIds; j++){
-                if(userId === followedIds[j]){
+                let item= followedIds[j].toString()
+                if(userId === item){
                     orderedU.push(compatibleUsers[i])
                 }
             }
@@ -37,8 +38,8 @@ export async function UserSearch(req, res) {
         for (let i=0; i < compatibleUsers.length; i++){
             let userId = compatibleUsers[i].id.toString();
             for(let j=0; j < followedIds; j++){
-                res.send(followedIds[j].toString())
-                if(userId !== followedIds[j]){
+                let item= followedIds[j].toString()
+                if(userId !== item){
                     orderedU.push(compatibleUsers[i])
                 }
             }
