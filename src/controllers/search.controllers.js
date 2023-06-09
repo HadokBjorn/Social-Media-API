@@ -39,7 +39,6 @@ export async function UserSearch(req, res) {
             let userId = compatibleUsers[i].id.toString();
             for(let j=0; j < followedIds.length; j++){
                 let item= followedIds[j].toString()
-                res.send(item)
                 if(userId !== item){
                     orderedU.push(compatibleUsers[i])
                 }
