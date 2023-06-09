@@ -16,8 +16,9 @@ export async function createComment(req, res) {
 
 export async function getComments(req, res) {
 	const { id } = req.params;
+	const userId = res.locals.user.id;
 	try {
-		const comments = await getCommentsDB(id);
+		const comments = await getCommentsDB(id, userId);
 		if (comments.rowCount === 0) return res.status(404).send("Ainda não há comentários");
 		res.status(200).send(comments.rows);
 	} catch (error) {
