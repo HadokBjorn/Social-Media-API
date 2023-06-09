@@ -41,14 +41,12 @@ export async function UserSearch(req, res) {
             }
         }
 
-        res.send(orderedU)
-
         for (let i=0; i < compatibleUsers.length; i++){
             let userId = compatibleUsers[i].id.toString();
-            res.send(stringIds)
+             res.send(stringIds)
             if(!stringIds.includes(userId)){
                 orderedU.push(compatibleUsers[i])
-            }
+            } 
             }
         
 
