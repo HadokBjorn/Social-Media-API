@@ -26,7 +26,7 @@ export async function UserSearch(req, res) {
         }
 
         for (let i=0; i < compatibleUsers.length; i++){
-            res.send(Number(compatibleUsers[i].id))
+            res.send(compatibleUsers[i].id)
             for(let j=0; j < followedIds; j++){
                 if( userId === followedIds[j]){
                     res.send("oi")
