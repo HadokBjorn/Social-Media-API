@@ -42,7 +42,8 @@ export async function Follow(req,res){
         await insertFollow(user_id, follower_id)
         const follow= await searchFollow(user_id,follower_id)
         let idt= follow.rows[0].id
-        return res.status(200).send(idt)
+        let textId= idt.toString()
+        return res.status(200).send(textId)
 
     } catch(err){
         res.status(500).send(err.message);
