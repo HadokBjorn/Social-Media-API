@@ -22,5 +22,5 @@ export function deleteFollow(id){
 }
 
 export function searchFollow(user_id, follower_id){
-    return db.query(`SELECT * FROM followers WHERE user_id=$1 AND WHERE follower_id=$2`, [user_id,follower_id])
+    return db.query(`SELECT * FROM followers WHERE user_id=$1 AND  follower_id=$2`, [user_id,follower_id])
 }
