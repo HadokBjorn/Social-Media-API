@@ -43,6 +43,8 @@ export async function UserSearch(req, res) {
             }
         }
 
+        orderedUsers.push(followedIds)
+
 
         return res.send(orderedUsers)
     } catch (err) {
