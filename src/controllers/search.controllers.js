@@ -25,10 +25,10 @@ export async function UserSearch(req, res) {
             }
         }
 
-        for (let i=0; i < compatibleUsers.length; i++){
-            res.send(compatibleUsers[i].id)
-            for(let j=0; j < followedIds; j++){
-                if( userId === followedIds[j]){
+        for (let i=0; i < followedIds.length; i++){
+            let item= followedIds[i]
+            for(let j=0; j < compatibleUsers; j++){
+                if( item === compatibleUsers[j].id){
                     res.send("oi")
                 }
             }
