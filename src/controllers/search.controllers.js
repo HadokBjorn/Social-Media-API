@@ -33,8 +33,9 @@ export async function UserSearch(req, res) {
                     orderedU.push(compatibleUsers[i])
                 }
             }
-            res.send(orderedU)
         }
+
+        res.send(orderedU)
 
         for (let i=0; i < compatibleUsers.length; i++){
             let userId = compatibleUsers[i].id.toString();
