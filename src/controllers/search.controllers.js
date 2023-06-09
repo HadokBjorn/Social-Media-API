@@ -18,7 +18,7 @@ export async function UserSearch(req, res) {
             followedIds.push(followedUsers.rows[i].user_id)
         }
 
-        for(let i=0; i < followedIds; i++){
+        for(let i=0; i < followedIds.length; i++){
             let item= followedIds[i].toString()
             stringIds.push(item)
         }
@@ -43,7 +43,6 @@ export async function UserSearch(req, res) {
 
         for (let i=0; i < compatibleUsers.length; i++){
             let userId = compatibleUsers[i].id.toString();
-            res.send(stringIds)
             if(!stringIds.includes(userId)){
                 orderedU.push(compatibleUsers[i])
             } 
