@@ -5,7 +5,7 @@ export async function UserSearch(req, res) {
     const {search} = req.body
     const id= parseInt(req.body.id)
     let compatibleUsers = [];
-    let orderedUsers=[];
+    let orderedU=[];
     let followedIds=[];
 
     try {
@@ -28,26 +28,24 @@ export async function UserSearch(req, res) {
         for (let i=0; i < compatibleUsers.length; i++){
             let userId = compatibleUsers[i].id;
             for(let j=0; j < followedIds; j++){
-                if(userId == followedIds[j]){
-                    orderedUsers.push(compatibleUsers[i]);
+                if( userId === followedIds[j]){
+                    orderedU.push(compatibleUsers[i]);
                 }
             }
-            res.send(orderedUsers)
+            res.send(orderedU)
         }
 
         for (let i=0; i < compatibleUsers.length; i++){
             let userId = compatibleUsers[i].id;
             for(let j=0; j < followedIds; j++){
                 if(userId !== followedIds[j]){
-                    orderedUsers.push(compatibleUsers[i])
+                    orderedU.push(compatibleUsers[i])
                 }
             }
         }
 
-        orderedUsers.push(followedIds)
+        orderedU.push(followedIds)
 
-
-        return res.send(orderedUsers)
     } catch (err) {
         res.status(500).send(err.message);
     }
